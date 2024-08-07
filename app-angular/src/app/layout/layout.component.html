@@ -1,0 +1,103 @@
+<div class="layout-container">
+  <mat-sidenav-container class="layout-sidenav-container">
+    <mat-sidenav
+      #leftSidenav
+      autoFocus="false"
+      [mode]="leftSidenavMode"
+      [opened]="leftSidenavOpened"
+      [fixedInViewport]="true"
+      class="left-sidenav"
+    >
+      <div
+        style="
+          height: 64px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          background-color: white;
+        "
+      >
+        <img src="favicon.ico" style="width: 50px; height: 50px" />
+      </div>
+      <div class="profile">
+        <div>
+          <img src="profile.png" class="profile-picture" />
+          <button
+            mat-mini-fab
+            style="background-color: white; color: midnightblue"
+            [matMenuTriggerFor]="menuProfile"
+          >
+            <mat-icon>expand_more</mat-icon>
+          </button>
+        </div>
+        <div class="profile-name">
+          <div style="font-weight: 500; text-transform: capitalize">
+            {{ authService.userInfo.name }}
+          </div>
+          <div style="font-weight: 100">
+            {{ authService.signInAs }}
+          </div>
+        </div>
+      </div>
+      <div class="left-sidenav-items" (click)="onPathChange()">
+        <mat-nav-list>
+          <a
+            mat-list-item
+            routerLink="/"
+            routerLinkActive="router-link-active"
+            [routerLinkActiveOptions]="{ exact: true }"
+          >
+            <mat-icon matListItemIcon>home</mat-icon>
+            <span>Home</span>
+          </a>
+          @if (TYPES.PERMISSION.PRODUCT.READ | permission) {
+            <a
+              mat-list-item
+              routerLink="/products"
+              routerLinkActive="router-link-active"
+            >
+              <mat-icon matListItemIcon>inventory</mat-icon>
+              <span>Products</span>
+            </a>
+          }
+          @if (TYPES.PERMISSION.SUPERUSER | permission) {
+            <a
+              mat-list-item
+              routerLink="/roles"
+              routerLinkActive="router-link-active"
+            >
+              <mat-icon matListItemIcon>group</mat-icon>
+              <span>Roles</span>
+            </a>
+            <a
+              mat-list-item
+              routerLink="/users"
+              routerLinkActive="router-link-active"
+            >
+              <mat-icon matListItemIcon>admin_panel_settings</mat-icon>
+              <span>Users</span>
+            </a>
+          }
+        </mat-nav-list>
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content
+      [style.backgroundColor]="layoutService.backgroundColor"
+    >
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+
+<mat-menu #menuProfile="matMenu">
+  @if (authService.userInfo.roles.length > 1) {
+    <button mat-menu-item (click)="openRoleSwitcher()">
+      <mat-icon>manage_accounts</mat-icon>
+      <span>Change role</span>
+    </button>
+  }
+  <button mat-menu-item (click)="signOut()">
+    <mat-icon>logout</mat-icon>
+    <span>Sign out</span>
+  </button>
+</mat-menu>

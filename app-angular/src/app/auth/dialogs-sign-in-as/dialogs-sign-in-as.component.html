@@ -1,0 +1,27 @@
+<h1 mat-dialog-title>
+  <span>Sign in as : </span>
+</h1>
+<div mat-dialog-content>
+  <mat-radio-group class="example-radio-group">
+    @if (authService.userInfo.id === environment.superUserId) {
+      <mat-radio-button
+        class="example-radio-button"
+        [mat-dialog-close]="TYPES.PERMISSION.SUPERUSER"
+        [value]="TYPES.PERMISSION.SUPERUSER"
+        [checked]="TYPES.PERMISSION.SUPERUSER === authService.signInAs"
+      >
+        {{ TYPES.PERMISSION.SUPERUSER }}
+      </mat-radio-button>
+    }
+    @for (role of authService.userInfo.roles; track role.id) {
+      <mat-radio-button
+        class="example-radio-button"
+        [mat-dialog-close]="role.name"
+        [value]="role.name"
+        [checked]="role.name === authService.signInAs"
+      >
+        {{ role.name }}
+      </mat-radio-button>
+    }
+  </mat-radio-group>
+</div>

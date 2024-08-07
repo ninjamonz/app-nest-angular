@@ -1,0 +1,29 @@
+.top-toolbar {
+  height: 64px;
+
+  background-color: midnightblue;
+  color: white;
+
+  mat-icon {
+    color: white;
+  }
+}
+.top-toolbar-title {
+  margin-left: 8px;
+}
+.top-toolbar-spacer {
+  flex: 1 1 auto;
+}
+
+.content-container {
+  padding: 20px;
+  height: calc(100vh - 64px - 40px); // total - toolbarHeight - paddingY
+  overflow-y: auto;
+
+  background-color: white;
+}
+
+.content {
+  width: 100%;
+  margin: auto;
+}

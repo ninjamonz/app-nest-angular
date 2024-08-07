@@ -1,0 +1,31 @@
+<div class="page-container">
+  <div class="page-content">
+    <div>
+      <img src="profile.png" class="logo" />
+    </div>
+    @if (errorMessage) {
+      <div class="box-red" style="margin-bottom: 20px">
+        {{ errorMessage }}
+      </div>
+    }
+
+    @if (isFetching) {
+      <mat-spinner style="margin: auto"></mat-spinner>
+      <div style="text-align: center; font-size: 20px; margin-top: 20px; color: white">
+        Loading, please wait...
+      </div>
+    } @else {
+      <div>
+        <button class="signin-button" (click)="signIn('google')">
+          <img src="google-logo.jpg" class="signin-button-image" />
+          <div class="signin-button-text">Sign in with Google</div>
+        </button>
+      </div>
+      <div style="margin-top: 20px">
+        <button class="signin-button" (click)="signIn('demo')">
+          <div style="width: 100%">SUPERUSER DEMO</div>
+        </button>
+      </div>
+    }
+  </div>
+</div>

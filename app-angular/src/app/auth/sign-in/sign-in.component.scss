@@ -1,0 +1,53 @@
+.page-container {
+  background-color: midnightblue;
+  height: 100vh;
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.page-content {
+  padding: 20px;
+
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+.logo {
+  height: 200px;
+  width: 200px;
+  margin-bottom: 50px;
+}
+
+.signin-button {
+  background-color: white;
+  height: 50px;
+  width: 200px;
+  cursor: pointer;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 10px;
+}
+
+.signin-button-image {
+  height: 30px;
+  width: 30px;
+}
+
+.signin-button-text {
+  text-align: left;
+}
+
+.mat-mdc-progress-spinner {
+  --mdc-circular-progress-active-indicator-color: white;
+}
